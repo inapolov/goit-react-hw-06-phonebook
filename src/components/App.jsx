@@ -1,13 +1,19 @@
 import {useState,useEffect} from "react";
 import { nanoid } from 'nanoid';
+import { useDispatch,useSelector } from "react-redux";
 import PropTypes from 'prop-types';
 import Form from './Form';
 import ContactList from "./ContactList";
 import Filter from "./Filter";
 
+import {increment,decrement} from '../redux/store'
 
 
-function App(){
+
+function App() {
+  
+  const value = useSelector(state => state.myValue);
+  const dispatch = useDispatch();
 
   const [contacts, setContacts] = useState(()=>JSON.parse(localStorage.getItem('contacts')) ?? []);
   const [filter, setFilter] = useState('');
@@ -51,6 +57,10 @@ function App(){
 
     return (
       <div>
+        <h2>{value}</h2>
+        <button onClick={()=>dispatch(increment(1))}>increment</button>
+        <button onClick={()=>dispatch(decrement(1))}>decrement</button>
+
         <h1>Phonebook</h1>
         <Form onSubmit={formSubmitHandler}/>        
         <h2>Contacts</h2>
