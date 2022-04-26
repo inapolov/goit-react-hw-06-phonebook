@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import ContactItem from "components/ContactItem";
 
 
-const ContactList = ({ contacts,onDeleteContact }) => (
+const ContactList = ({ filtredContacts,onDeleteContact }) => (
     <ul>
-        {contacts.map(contact => (
+        {filtredContacts.map(contact => (
             <ContactItem contact={contact} onDeleteContact={onDeleteContact}/>    
         ))}
         </ul>
